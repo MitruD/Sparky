@@ -10,13 +10,20 @@ namespace Sparky
     [TestFixture]
     public class CustomerNUnitTests
     {
+        private Customer customer;
+        [SetUp]
+        public void SetUp()
+        {
+            customer = new Customer();
+        }
+
         [Test]
         public void CombineName_InputFirstAndLastName_ReturnFullName()
         {
+
             //Arange
-            var customer = new Customer();
             //Act
-            customer.GreetAndCombineNames("Dima","Mitru");
+            customer.GreetAndCombineNames("Dima", "Mitru");
             //Assert
             Assert.AreEqual(customer.GreetMessage, "Hello, Dima Mitru");
             Assert.That(customer.GreetMessage, Is.EqualTo("Hello, Dima Mitru"));
