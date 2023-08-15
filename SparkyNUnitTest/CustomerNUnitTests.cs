@@ -16,14 +16,27 @@ namespace Sparky
             //Arange
             var customer = new Customer();
             //Act
-            string fullName = customer.GreetAndCombineNames("Dima","Mitru");
+            customer.GreetAndCombineNames("Dima","Mitru");
             //Assert
-            Assert.AreEqual(fullName, "Hello, Dima Mitru");
-            Assert.That(fullName, Is.EqualTo("Hello, Dima Mitru"));
-            Assert.That(fullName, Does.Contain(","));
-            Assert.That(fullName, Does.StartWith("Hello"));
-            Assert.That(fullName, Does.EndWith("mitru").IgnoreCase);
-            Assert.That(fullName, Does.Match("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
+            Assert.AreEqual(customer.GreetMessage, "Hello, Dima Mitru");
+            Assert.That(customer.GreetMessage, Is.EqualTo("Hello, Dima Mitru"));
+            Assert.That(customer.GreetMessage, Does.Contain(","));
+            Assert.That(customer.GreetMessage, Does.StartWith("Hello"));
+            Assert.That(customer.GreetMessage, Does.EndWith("mitru").IgnoreCase);
+            Assert.That(customer.GreetMessage, Does.Match("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
         }
+
+        [Test]
+        public void GreetMessage_NotGreeted_ReturnNull()
+        {
+            //arange
+            var customer = new Customer();
+
+            //act
+
+            //assert
+            Assert.IsNull(customer.GreetMessage);
+        }
+
     }
 }
