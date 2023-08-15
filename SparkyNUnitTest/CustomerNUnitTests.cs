@@ -18,14 +18,12 @@ namespace Sparky
             //Act
             string fullName = customer.GreetAndCombineNames("Dima","Mitru");
             //Assert
+            Assert.AreEqual(fullName, "Hello, Dima Mitru");
             Assert.That(fullName, Is.EqualTo("Hello, Dima Mitru"));
+            Assert.That(fullName, Does.Contain(","));
+            Assert.That(fullName, Does.StartWith("Hello"));
+            Assert.That(fullName, Does.EndWith("mitru").IgnoreCase);
+            Assert.That(fullName, Does.Match("Hello, [A-Z]{1}[a-z]+ [A-Z]{1}[a-z]+"));
         }
-        //[Test]
-        //public void CombineName_InputFirstAndLastName_ReturnFullName(string firstName, string lastName)
-        //{
-        //    var customer = new Customer();
-
-        //    string fullName = customer.GreetAndCombineNames(firstName, lastName);
-        //}
     }
 }
