@@ -39,16 +39,45 @@ namespace Sparky
         }
         
         [Test]
-        public void ResulFalse()
+        [TestCase(110)]
+        [TestCase(130)]
+        public void ResulFalse(int a)
         {
             //Arange
             Calculator calc = new Calculator();
 
             //Act
-            bool resultfalse = calc.IsOddNumber(2);
+            bool resultfalse = calc.IsOddNumber(a);
 
             //Assert
             Assert.AreEqual(false, resultfalse);
+        }
+
+        [Test]
+        [TestCase(10, ExpectedResult = false)]
+        [TestCase(111, ExpectedResult = true)]
+        public bool IsOddChecker_InputNumber_ReturnTrueIfOdd(int a)
+        {
+            Calculator calc = new Calculator();
+
+            return calc.IsOddNumber(a);
+        }
+
+
+        [Test]
+        [TestCase(5.4, 10.5)]
+        [TestCase(5.43, 10.53)]
+        [TestCase(5.49, 10.59)]
+        public void AddNumbersDouble_InputTwoDouble_GetCorrectAddition(double a, double b)
+        {
+            //Arange
+            Calculator calc = new Calculator();
+
+            //Act
+            double result = calc.AddNumbersDouble(a, b);
+
+            //Assert
+            Assert.AreEqual(15.9, result,.2);
         }
     }
 }

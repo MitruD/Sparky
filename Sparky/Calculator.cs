@@ -6,6 +6,11 @@
         {
             return a + b;
         }
+        
+        public double AddNumbersDouble(double a, double b)
+        {
+            return a + b;
+        }
 
         public bool IsOddNumber(int a) => a % 2 != 0;
     }
