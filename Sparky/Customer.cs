@@ -13,6 +13,11 @@ namespace Sparky
 
         public string GreetAndCombineNames(string firstName, string lastName)
         {
+            if (string.IsNullOrWhiteSpace(firstName))
+            {
+                throw new ArgumentException("Empty First Name");
+            }
+
             GreetMessage = $"Hello, {firstName} {lastName}";
             Discount = 20;
             //eturn firstName + " " + lastName;
