@@ -75,6 +75,12 @@ namespace Sparky
 
             Assert.That(()=>customer.GreetAndCombineNames("","Mitru"),
                 Throws.ArgumentException.With.Message.EqualTo("Empty First Name"));
+
+            Assert.Throws<ArgumentException>(()
+                => customer.GreetAndCombineNames(" ", "Mitru"));
+
+            Assert.That(() => customer.GreetAndCombineNames("", "Mitru"),
+                Throws.ArgumentException);
         }
 
     }
