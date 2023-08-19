@@ -83,5 +83,21 @@ namespace Sparky
                 Throws.ArgumentException);
         }
 
+        [Test]
+        public void CustomerType_CreateCustomerWithLessThan100Order_ReturnBasicCustomer()
+        {
+            customer.OrderTotal = 10;
+            var result = customer.GetCustomerdetails();
+            Assert.That(result, Is.TypeOf<BasicCustomer>());
+        }
+
+        [Test]
+        public void CustomerType_CreateCustomerWithMoreThan100Order_ReturnPremiumCustomer()
+        {
+            customer.OrderTotal = 101;
+            var result = customer.GetCustomerdetails();
+            Assert.That(result, Is.TypeOf<PremiumCustomer>());
+        }
+
     }
 }
