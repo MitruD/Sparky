@@ -112,8 +112,21 @@ namespace Sparky
             logMock.Object.LogSeverity = 100;
             Assert.That(logMock.Object.LogSeverity,Is.EqualTo(100));
             Assert.That(logMock.Object.LogType,Is.EqualTo("warning"));
+
+            //callbacks
+            string logTemp = "Hello, ";
+            logMock.Setup(u => u.LogToDB(It.IsAny<string>()))
+                .Returns(true).Callback((string str) => logTemp += str);
+            logMock.Object.LogToDB("Ben");
+            Assert.That(logTemp, Is.EqualTo("Hello, Ben"));
+
+            //callbacks
+            int counter = 5;
+            logMock.Setup(u => u.LogToDB(It.IsAny<string>()))
+                .Returns(true).Callback(() => counter++);
+            logMock.Object.LogToDB("Ben");
+            logMock.Object.LogToDB("Ben");
+            Assert.That(counter, Is.EqualTo(7));
         }
-
-
     }
 }
