@@ -66,5 +66,17 @@ namespace Sparky
             var result = bankAccount.Withdraw(300);
             Assert.IsFalse(result);
         }
+
+        [Test]
+        public void BankLogDummy_LogMockString_Returnstrue()
+        {
+            var logMock= new Mock<ILogBook>();
+            string desireOutput = "Hello";
+            logMock.Setup(u=>u.MessageWithReturnStr(It.IsAny<string>())).Returns((string str) => str);
+
+            Assert.That(logMock.Object.MessageWithReturnStr("Hello"), Is.EqualTo(desireOutput));
+        }
+
+
     }
 }
