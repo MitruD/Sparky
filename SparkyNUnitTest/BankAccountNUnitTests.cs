@@ -68,7 +68,7 @@ namespace Sparky
         }
 
         [Test]
-        public void BankLogDummy_LogMockString_Returnstrue()
+        public void BankLogDummy_LogMockString_ReturnsTrue()
         {
             var logMock= new Mock<ILogBook>();
             string desireOutput = "Hello";
@@ -78,7 +78,7 @@ namespace Sparky
         }
 
         [Test]
-        public void BankLogDummy_LogMockStringOutputStr_Returnstrue()
+        public void BankLogDummy_LogMockStringOutputStr_ReturnsTrue()
         {
             var logMock= new Mock<ILogBook>();
             string desireOutput = "Hello";
@@ -86,6 +86,19 @@ namespace Sparky
             string result = "";
             Assert.IsTrue(logMock.Object.LogWithOutputResult("Ben", out result));
             Assert.That(result, Is.EqualTo(desireOutput));
+        }
+        
+
+        [Test]
+        public void BankLogDummy_LogRefChecker_ReturnsTrue()
+        {
+            var logMock= new Mock<ILogBook>();
+            Customer customer= new Customer();
+            Customer customerNotUsed= new Customer();
+
+            logMock.Setup(u=>u.LogWithRefObj(ref customer)).Returns(true);
+            Assert.IsTrue(logMock.Object.LogWithRefObj(ref customer));
+            Assert.IsFalse(logMock.Object.LogWithRefObj(ref customerNotUsed));
         }
 
 
