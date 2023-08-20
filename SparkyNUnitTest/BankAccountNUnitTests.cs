@@ -53,5 +53,18 @@ namespace Sparky
             var result = bankAccount.Withdraw(withdraw);
             Assert.IsTrue(result);
         }
+
+        [Test]
+        public void BankWithdraw_Withdraw300With200Balance_ReturnsFalse()
+        {
+            var logMock= new Mock<ILogBook>();
+            //logMock.Setup(u=>u.LogBalanceAfterWithdrawal(It.Is<int>(x=>x<0))).Returns(false);
+            logMock.Setup(u=>u.LogBalanceAfterWithdrawal(It.IsInRange<int>(int.MinValue,-1,Moq.Range.Inclusive))).Returns(false);
+
+            BankAccount bankAccount = new(logMock.Object);
+            bankAccount.Deposit(200);
+            var result = bankAccount.Withdraw(300);
+            Assert.IsFalse(result);
+        }
     }
 }
